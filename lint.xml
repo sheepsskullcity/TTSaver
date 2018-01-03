@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+    <issue id="SdCardPath">
+        <ignore path="src/com/example/testapp/MainActivity.java" />
+        <ignore path="src/com/example/testapp/MyService.java" />
+        <ignore path="src/com/example/testapp/Test.java" />
+    </issue>
+</lint>

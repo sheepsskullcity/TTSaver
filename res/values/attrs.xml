@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+	<declare-styleable name="org.txt.to.audiofile.SeekBarPreference">
+		<attr name="minValue" format="integer" />
+		<attr name="maxValue" format="integer" />
+	</declare-styleable>
+	
+	<declare-styleable name="org.txt.to.audiofile.SeekBarPreferencePause">
+		<attr name="minPValue" format="integer" />
+		<attr name="maxPValue" format="integer" />
+	</declare-styleable>
+	
+	<declare-styleable name="org.txt.to.audiofile.SeekBarPreferencePitch">
+		<attr name="minPiValue" format="integer" />
+		<attr name="maxPiValue" format="integer" />
+	</declare-styleable>
+	
+</resources>

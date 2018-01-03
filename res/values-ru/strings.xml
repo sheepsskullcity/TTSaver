@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <string name="app_name">TTSaver</string>
+    <string name="action_settings">Настройки</string>
+    
+    <string name="files_filepath_append">file ></string>
+    <string name="files_dirpath_append">dir ></string>
+    <string name="files_empty">Папка пуста</string>
+    
+    <string name="ticker_text">запись</string>
+    <string name="notification_title">TTSaver</string>
+    <string name="notification_message">Идет запись.</string>
+    <string name="error_notification_title">Ошибка</string>
+    <string name="final_notification_title">Успешно</string>
+    <string name="final_notification_text">Запись завершена.</string>
+    
+    <string name="tts_error">TTS ошибка !</string>
+    <string name="tts_init_error">TTS ошибка инициализации !</string>
+    <string name="buffer_error">Ошибка текстового буфера !</string>
+    <string name="encoder_error">Ошибка кодека !</string>
+    <string name="file_error">Ошибка: файл не найден !</string>
+    <string name="dir_error">Ошибка: папка не найдена !</string>
+    <string name="file_notreadable_error">Ошибка: нет прав на чтение файла !</string>
+    <string name="dir_notwritable_error">Ошибка: нет прав на запись !</string>
+    <string name="file_notwritable_error">Ошибка: нет прав на запись !</string>
+    <string name="empty_text_error">Ошибка: пустой текст !</string>
+    <string name="no_permission">Ошибка: включите разрешение на запись для программы !</string>
+    
+    <string name="file_path_title">Путь к файлу</string>
+    <string name="text_title">Текст</string>
+    <string name="folder_title">Путь к папке</string>
+    
+    <string name="total_time">Общее время:</string>
+    <string name="total_progress_title">общий прогресс</string>
+    <string name="enc_progress_title">прогресс аудиокодека</string>
+    <string name="startBtn">Старт</string>
+    <string name="stopBtn">Стоп</string>
+    <string name="rangeBtn">Диапазон</string>
+    <string name="filesBtn">Файлы</string>
+    <string name="range_text">диапазон: </string>
+    <string name="startFrom">Начать со строки</string>
+    <string name="endWith">Закончить на строке</string>
+    
+    <string name="pref_checkBoxTitle">Частичная запись</string>
+    <string name="pref_descroff">Частичная запись файла откл.</string>
+	<string name="pref_descron">Частичная запись файла вкл.</string>
+	
+	<string name="pref_notifsound__checkBoxTitle">Звук уведомлений</string>
+    <string name="pref_notifsound_descroff">Звук уведомлений откл.</string>
+	<string name="pref_notifsound_descron">Звук уведомлений вкл.</string>
+	
+	<string name="dtitle">Диапазон для записи</string>
+    <string name="ok">ОК</string>
+    <string name="cancel">Отмена</string>
+    
+    <string name="prefs_TTSSettings">Настройки TTS</string>
+    <string name="pref_audioEncodingType">Аудио формат</string>
+    <string name="pref_audioEncodingType_dtitle">Выберите кодек</string>
+    <string name="pref_audioEncodingType_summary">Кодек для записи аудио.</string>
+    <string name="pref_mode">Режим</string>
+    <string name="pref_mode_dtitle">Выберите режим</string>
+    <string name="pref_mode_summary">Источник для записи.</string>
+    <string name="pref_outTemplate_title">Выходной шаблон</string>
+    <string name="pref_outTemplate_title_dtitle">Введите имя файла</string>
+    <string name="pref_outTemplate_title_summary">Шаблон имени для выходных файлов.</string>
+	<string name="pref_audioParts">Части</string>
+	<string name="pref_audioParts_dtitle">Введите число</string>
+	<string name="pref_audioParts_summary">Части, объединяемые в выходной аудиофайл.</string>
+	<string name="pref_theme_title">Тема</string>
+	<string name="pref_theme_title_dtitle">Выберите тему</string>
+	<string name="pref_theme_title_summary">Тема приложения.</string>
+	
+	<string name="pref_audioEncodingType_default">OGG</string>
+	<string name="pref_mode_default">1</string>
+	
+	<string-array name="pref_audioEncodingType_entries">
+		<item>OGG Vorbis</item>
+		<item>MP3 LAME</item>
+		<item>WAVE PCM</item>
+	</string-array>
+	<string-array name="pref_audioEncodingType_values">
+		<item>OGG</item>
+		<item>MP3</item>
+		<item>WAVE</item>
+	</string-array>
+	<string-array name="pref_mode_entries">
+		<item>Файл</item>
+		<item>Текст</item>
+	</string-array>
+	<string-array name="pref_mode_values">
+		<item>1</item>
+		<item>2</item>
+	</string-array>
+	<string-array name="pref_theme_entries">
+		<item>Темная</item>
+		<item>Светлая</item>
+	</string-array>
+	<string-array name="pref_theme_values">
+		<item>1</item>
+		<item>2</item>
+	</string-array>
+	
+	<string name="item_close">ЗАКРЫТЬ</string>
+	<string name="item_edit">ПЕРЕИМЕНОВАТЬ</string>
+	<string name="item_delete">УДАЛИТЬ</string>
+	<string name="item_save">СОХРАНИТЬ ПУТЬ</string>
+	<string name="item_menu_action_mode">ВЫБОР</string>
+	
+	<string name="confirm_removing">Подтвердите удаление</string>
+	<string name="removing_info">Удалить файл</string>
+	<string name="confirm_rename">Переименовать</string>
+	<string name="rename_info">Переименовать файл</string>
+	
+	<string name="seekBar_summary">Текущая скорость речи:</string>
+    <string name="seekBar_dialog_title">Скорость речи</string>
+    
+    <string name="seekBarPitch_summary">Текущий тембр речи:</string>
+    <string name="seekBarPitch_dialog_title">Тембр речи</string>
+	
+	<string name="seekBarPause_summary">Текущая макс пауза:</string>
+    <string name="seekBarPause_dialog_title">Макс пауза</string>
+    <string name="enable_maxPause">Макс пауза</string>
+    <string name="maxPause_descroff">Ограничить паузу в аудио - откл.</string>
+	<string name="maxPause_descron">Ограничить паузу в аудио - вкл.</string>
+    
+    <string name="regex_summary">Замена текста регулярными выражениями.</string>
+    <string name="regex_dialog_title">RegExp</string>
+    
+    <string name="out_bad_chars">Недопустимые символы шаблона</string>
+    <string name="new_bad_chars">Недопустимые символы для имени файла</string>
+    <string name="file_already_exist">файл уже существует!</string>
+	
+</resources>
