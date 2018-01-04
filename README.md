@@ -11,6 +11,7 @@ List of libraries:
 
 JAVA:
 
+* android-support-v7-appcompat
 * commons-io
 * epublib-core
 * jsoup
