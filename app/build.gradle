@@ -1,0 +1,50 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 29
+    defaultConfig {
+        applicationId "org.txt.to.audiofile"
+        minSdkVersion 19
+        targetSdkVersion 29
+        versionCode 13
+        versionName "1.2.8"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        externalNativeBuild {
+            cmake {
+                cppFlags ""
+            }
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    externalNativeBuild {
+    /*
+        cmake {
+            path "CMakeLists.txt"
+        }
+    */
+        ndkBuild {
+            path 'src/main/jni/Android.mk'
+        }
+    }
+    ndkVersion '21.3.6528147'
+    buildToolsVersion '29.0.3'
+}
+
+dependencies {
+    implementation ('com.positiondev.epublib:epublib-core:3.1') {
+        exclude group: "xmlpull", module:"xmlpull"
+    }
+    implementation 'commons-io:commons-io:2.6'
+    implementation 'org.jsoup:jsoup:1.13.1'
+    implementation 'com.googlecode.juniversalchardet:juniversalchardet:1.0.3'
+    testImplementation 'junit:junit:4.13.1'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation "androidx.preference:preference:1.1.1"
+}

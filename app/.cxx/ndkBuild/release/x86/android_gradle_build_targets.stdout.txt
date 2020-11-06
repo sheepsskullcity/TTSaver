@@ -1,0 +1,4 @@
+make: Nothing to be done for 'encode'.
+make: Nothing to be done for 'mp3lame'.
+make: Nothing to be done for 'ogg'.
+make: Nothing to be done for 'vorbis'.

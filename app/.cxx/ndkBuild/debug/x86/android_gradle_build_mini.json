@@ -1,0 +1,40 @@
+{
+  "buildFiles": [
+    "C:\\Users\\User\\AndroidStudioProjects\\TTSaver\\app\\src\\main\\jni\\Android.mk",
+    "C:\\Users\\User\\AndroidStudioProjects\\TTSaver\\app\\src\\main\\jni\\Application.mk"
+  ],
+  "cleanCommands": [
+    "C:\\Users\\User\\AppData\\Local\\Android\\Sdk\\ndk\\21.3.6528147\\ndk-build.cmd NDK_PROJECT_PATH\u003dnull APP_BUILD_SCRIPT\u003dC:\\Users\\User\\AndroidStudioProjects\\TTSaver\\app\\src\\main\\jni\\Android.mk NDK_APPLICATION_MK\u003dC:\\Users\\User\\AndroidStudioProjects\\TTSaver\\app\\src\\main\\jni\\Application.mk APP_ABI\u003dx86 NDK_ALL_ABIS\u003dx86 NDK_DEBUG\u003d1 APP_PLATFORM\u003dandroid-19 NDK_OUT\u003dC:/Users/User/AndroidStudioProjects/TTSaver/app/build/intermediates/ndkBuild/debug/obj NDK_LIBS_OUT\u003dC:\\Users\\User\\AndroidStudioProjects\\TTSaver\\app\\build\\intermediates\\ndkBuild\\debug\\lib clean"
+  ],
+  "buildTargetsCommand": "C:\\Users\\User\\AppData\\Local\\Android\\Sdk\\ndk\\21.3.6528147\\ndk-build.cmd NDK_PROJECT_PATH\u003dnull APP_BUILD_SCRIPT\u003dC:\\Users\\User\\AndroidStudioProjects\\TTSaver\\app\\src\\main\\jni\\Android.mk NDK_APPLICATION_MK\u003dC:\\Users\\User\\AndroidStudioProjects\\TTSaver\\app\\src\\main\\jni\\Application.mk APP_ABI\u003dx86 NDK_ALL_ABIS\u003dx86 NDK_DEBUG\u003d1 APP_PLATFORM\u003dandroid-19 NDK_OUT\u003dC:/Users/User/AndroidStudioProjects/TTSaver/app/build/intermediates/ndkBuild/debug/obj NDK_LIBS_OUT\u003dC:\\Users\\User\\AndroidStudioProjects\\TTSaver\\app\\build\\intermediates\\ndkBuild\\debug\\lib {LIST_OF_TARGETS_TO_BUILD}",
+  "libraries": {
+    "mp3lame-debug-x86": {
+      "artifactName": "mp3lame",
+      "buildCommand": "C:\\Users\\User\\AppData\\Local\\Android\\Sdk\\ndk\\21.3.6528147\\ndk-build.cmd NDK_PROJECT_PATH\u003dnull APP_BUILD_SCRIPT\u003dC:\\Users\\User\\AndroidStudioProjects\\TTSaver\\app\\src\\main\\jni\\Android.mk NDK_APPLICATION_MK\u003dC:\\Users\\User\\AndroidStudioProjects\\TTSaver\\app\\src\\main\\jni\\Application.mk APP_ABI\u003dx86 NDK_ALL_ABIS\u003dx86 NDK_DEBUG\u003d1 APP_PLATFORM\u003dandroid-19 NDK_OUT\u003dC:/Users/User/AndroidStudioProjects/TTSaver/app/build/intermediates/ndkBuild/debug/obj NDK_LIBS_OUT\u003dC:\\Users\\User\\AndroidStudioProjects\\TTSaver\\app\\build\\intermediates\\ndkBuild\\debug\\lib C:/Users/User/AndroidStudioProjects/TTSaver/app/build/intermediates/ndkBuild/debug/obj/local/x86/libmp3lame.so",
+      "abi": "x86",
+      "output": "C:\\Users\\User\\AndroidStudioProjects\\TTSaver\\app\\build\\intermediates\\ndkBuild\\debug\\obj\\local\\x86\\libmp3lame.so",
+      "runtimeFiles": []
+    },
+    "vorbis-debug-x86": {
+      "artifactName": "vorbis",
+      "buildCommand": "C:\\Users\\User\\AppData\\Local\\Android\\Sdk\\ndk\\21.3.6528147\\ndk-build.cmd NDK_PROJECT_PATH\u003dnull APP_BUILD_SCRIPT\u003dC:\\Users\\User\\AndroidStudioProjects\\TTSaver\\app\\src\\main\\jni\\Android.mk NDK_APPLICATION_MK\u003dC:\\Users\\User\\AndroidStudioProjects\\TTSaver\\app\\src\\main\\jni\\Application.mk APP_ABI\u003dx86 NDK_ALL_ABIS\u003dx86 NDK_DEBUG\u003d1 APP_PLATFORM\u003dandroid-19 NDK_OUT\u003dC:/Users/User/AndroidStudioProjects/TTSaver/app/build/intermediates/ndkBuild/debug/obj NDK_LIBS_OUT\u003dC:\\Users\\User\\AndroidStudioProjects\\TTSaver\\app\\build\\intermediates\\ndkBuild\\debug\\lib C:/Users/User/AndroidStudioProjects/TTSaver/app/build/intermediates/ndkBuild/debug/obj/local/x86/libvorbis.so",
+      "abi": "x86",
+      "output": "C:\\Users\\User\\AndroidStudioProjects\\TTSaver\\app\\build\\intermediates\\ndkBuild\\debug\\obj\\local\\x86\\libvorbis.so",
+      "runtimeFiles": []
+    },
+    "encode-debug-x86": {
+      "artifactName": "encode",
+      "buildCommand": "C:\\Users\\User\\AppData\\Local\\Android\\Sdk\\ndk\\21.3.6528147\\ndk-build.cmd NDK_PROJECT_PATH\u003dnull APP_BUILD_SCRIPT\u003dC:\\Users\\User\\AndroidStudioProjects\\TTSaver\\app\\src\\main\\jni\\Android.mk NDK_APPLICATION_MK\u003dC:\\Users\\User\\AndroidStudioProjects\\TTSaver\\app\\src\\main\\jni\\Application.mk APP_ABI\u003dx86 NDK_ALL_ABIS\u003dx86 NDK_DEBUG\u003d1 APP_PLATFORM\u003dandroid-19 NDK_OUT\u003dC:/Users/User/AndroidStudioProjects/TTSaver/app/build/intermediates/ndkBuild/debug/obj NDK_LIBS_OUT\u003dC:\\Users\\User\\AndroidStudioProjects\\TTSaver\\app\\build\\intermediates\\ndkBuild\\debug\\lib C:/Users/User/AndroidStudioProjects/TTSaver/app/build/intermediates/ndkBuild/debug/obj/local/x86/libencode.so",
+      "abi": "x86",
+      "output": "C:\\Users\\User\\AndroidStudioProjects\\TTSaver\\app\\build\\intermediates\\ndkBuild\\debug\\obj\\local\\x86\\libencode.so",
+      "runtimeFiles": []
+    },
+    "ogg-debug-x86": {
+      "artifactName": "ogg",
+      "buildCommand": "C:\\Users\\User\\AppData\\Local\\Android\\Sdk\\ndk\\21.3.6528147\\ndk-build.cmd NDK_PROJECT_PATH\u003dnull APP_BUILD_SCRIPT\u003dC:\\Users\\User\\AndroidStudioProjects\\TTSaver\\app\\src\\main\\jni\\Android.mk NDK_APPLICATION_MK\u003dC:\\Users\\User\\AndroidStudioProjects\\TTSaver\\app\\src\\main\\jni\\Application.mk APP_ABI\u003dx86 NDK_ALL_ABIS\u003dx86 NDK_DEBUG\u003d1 APP_PLATFORM\u003dandroid-19 NDK_OUT\u003dC:/Users/User/AndroidStudioProjects/TTSaver/app/build/intermediates/ndkBuild/debug/obj NDK_LIBS_OUT\u003dC:\\Users\\User\\AndroidStudioProjects\\TTSaver\\app\\build\\intermediates\\ndkBuild\\debug\\lib C:/Users/User/AndroidStudioProjects/TTSaver/app/build/intermediates/ndkBuild/debug/obj/local/x86/libogg.so",
+      "abi": "x86",
+      "output": "C:\\Users\\User\\AndroidStudioProjects\\TTSaver\\app\\build\\intermediates\\ndkBuild\\debug\\obj\\local\\x86\\libogg.so",
+      "runtimeFiles": []
+    }
+  }
+}
