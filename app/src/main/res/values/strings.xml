@@ -2,11 +2,11 @@
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="app_name">TTSaver</string>
     <string name="action_settings">Settings</string>
-    
+
     <string name="files_filepath_append">file ></string>
     <string name="files_dirpath_append">dir ></string>
     <string name="files_empty">Empty folder</string>
-    
+
     <string name="ticker_text">recording</string>
     <string name="notification_title">TTSaver</string>
     <string name="notification_message">Recording now.</string>
@@ -14,7 +14,7 @@
     <string name="final_notification_title">Success</string>
     <string name="final_notification_text">Recording finished.</string>
 
-    
+
     <string name="tts_error">TTS error !</string>
     <string name="tts_init_error">TTS init error !</string>
     <string name="buffer_error">Text buffer error !</string>
@@ -26,11 +26,11 @@
     <string name="file_notwritable_error">Error: file not writable !</string>
     <string name="empty_text_error">Error: input text empty !</string>
     <string name="no_permission">Error: no storage permission !</string>
-    
+
     <string name="file_path_title">File path</string>
     <string name="text_title">Text</string>
     <string name="folder_title">Folder path</string>
-    
+
     <string name="total_time">Total time is:</string>
     <string name="total_progress_title">total progress</string>
     <string name="enc_progress_title">audio encoding progress</string>
@@ -41,19 +41,19 @@
     <string name="range_text">range: </string>
     <string name="startFrom">Start from string</string>
     <string name="endWith">End at string</string>
-    
+
     <string name="pref_checkBoxTitle">Partial file record</string>
     <string name="pref_descroff">Partial file record off.</string>
-	<string name="pref_descron">Partial file record on.</string>
-	
-	<string name="pref_notifsound__checkBoxTitle">Notification sound</string>
+    <string name="pref_descron">Partial file record on.</string>
+
+    <string name="pref_notifsound__checkBoxTitle">Notification sound</string>
     <string name="pref_notifsound_descroff">Notification sound off.</string>
-	<string name="pref_notifsound_descron">Notification sound on.</string>
-	
-	<string name="dtitle">Range for record</string>
+    <string name="pref_notifsound_descron">Notification sound on.</string>
+
+    <string name="dtitle">Range for record</string>
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
-    
+
     <string name="prefs_TTSSettings">TTS Settings</string>
     <string name="pref_audioEncodingType">Audio format</string>
     <string name="pref_audioEncodingType_dtitle">Choose codec</string>
@@ -64,75 +64,77 @@
     <string name="pref_outTemplate_title">Output template</string>
     <string name="pref_outTemplate_title_dtitle">Enter filename</string>
     <string name="pref_outTemplate_title_summary">Filename template for output files.</string>
-	<string name="pref_audioParts">Parts</string>
-	<string name="pref_audioParts_dtitle">Enter number</string>
-	<string name="pref_audioParts_summary">Number of audio files merged into output file.</string>
-	<string name="pref_theme_title">Theme</string>
-	<string name="pref_theme_title_dtitle">Choose theme</string>
-	<string name="pref_theme_title_summary">Application theme.</string>
-	
-	<string name="pref_audioEncodingType_default">OGG</string>
-	<string name="pref_mode_default">1</string>
-	
-	<string-array name="pref_audioEncodingType_entries">
-		<item>OGG Vorbis</item>
-		<item>MP3 LAME</item>
-		<item>WAVE PCM</item>
-	</string-array>
-	<string-array name="pref_audioEncodingType_values">
-		<item>OGG</item>
-		<item>MP3</item>
-		<item>WAVE</item>
-	</string-array>
-	<string-array name="pref_mode_entries">
-		<item>File</item>
-		<item>Text</item>
-		<item>TXTConvert</item>
-	</string-array>
-	<string-array name="pref_mode_values">
-		<item>1</item>
-		<item>2</item>
-		<item>3</item>
-	</string-array>
-	<string-array name="pref_theme_entries">
-		<item>Dark</item>
-		<item>Light</item>
-	</string-array>
-	<string-array name="pref_theme_values">
-		<item>1</item>
-		<item>2</item>
-	</string-array>
-	
-	<string name="item_close">CLOSE</string>
-	<string name="item_edit">EDIT NAME</string>
-	<string name="item_delete">DELETE</string>
-	<string name="item_save">SAVE PATH</string>
-	<string name="item_menu_action_mode">SELECT</string>
-	
-	<string name="confirm_removing">Confirm removing</string>
-	<string name="removing_info">Delete file</string>
-	<string name="confirm_rename">Confirm rename</string>
-	<string name="rename_info">Rename file</string>
-	
-	<string name="seekBar_summary">Current speech rate is: </string>
+    <string name="pref_audioParts">Parts</string>
+    <string name="pref_audioParts_dtitle">Enter number</string>
+    <string name="pref_audioParts_summary">Number of audio files merged into output file.</string>
+    <string name="pref_theme_title">Theme</string>
+    <string name="pref_theme_title_dtitle">Choose theme</string>
+    <string name="pref_theme_title_summary">Application theme.</string>
+
+    <string name="pref_audioEncodingType_default">OGG</string>
+    <string name="pref_mode_default">1</string>
+
+    <string-array name="pref_audioEncodingType_entries">
+        <item>OGG Vorbis</item>
+        <item>MP3 LAME</item>
+        <item>WAVE PCM</item>
+    </string-array>
+    <string-array name="pref_audioEncodingType_values">
+        <item>OGG</item>
+        <item>MP3</item>
+        <item>WAVE</item>
+    </string-array>
+    <string-array name="pref_mode_entries">
+        <item>File</item>
+        <item>Text</item>
+        <item>TXTConvert</item>
+    </string-array>
+    <string-array name="pref_mode_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+    <string-array name="pref_theme_entries">
+        <item>Dark</item>
+        <item>Light</item>
+    </string-array>
+    <string-array name="pref_theme_values">
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+    <string name="item_close">CLOSE</string>
+    <string name="item_edit">EDIT NAME</string>
+    <string name="item_delete">DELETE</string>
+    <string name="item_save">SAVE PATH</string>
+    <string name="item_menu_action_mode">SELECT</string>
+
+    <string name="confirm_removing">Confirm removing</string>
+    <string name="removing_info">Delete file</string>
+    <string name="confirm_rename">Confirm rename</string>
+    <string name="rename_info">Rename file</string>
+
+    <string name="seekBar_summary">Current speech rate is: </string>
     <string name="seekBar_dialog_title">Speech rate</string>
-    
+
     <string name="seekBarPitch_summary">Current pitch is: </string>
     <string name="seekBarPitch_dialog_title">Speech pitch</string>
-    
+
     <string name="seekBarPause_summary">Current max pause is: </string>
     <string name="seekBarPause_dialog_title">Max pause</string>
     <string name="enable_maxPause">Enable max pause</string>
     <string name="maxPause_descroff">Limit max pause in audio - off.</string>
-	<string name="maxPause_descron">Limit max pause in audio - on.</string>
-    
+    <string name="maxPause_descron">Limit max pause in audio - on.</string>
+
     <string name="regex_summary">Replace text with regular expression.</string>
     <string name="regex_dialog_title">RegExp</string>
-	
+
     <string name="out_bad_chars">Output template illegal chars</string>
     <string name="new_bad_chars">New filename illegal chars</string>
     <string name="file_already_exist">file already exist!</string>
-    <string name="foreground_service" >Foreground service TTSaverService.java</string>
+    <string name="foreground_service">Foreground service TTSaverService.java</string>
     <string name="foreground_service_desc">Foreground-Service</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

@@ -3,10 +3,11 @@ package org.txt.to.audiofile;
 import java.io.File;
 
 import android.Manifest;
-import android.app.DialogFragment;
+import android.app.Dialog;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
@@ -19,6 +20,9 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.preference.PreferenceManager;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatDialog;
+import androidx.fragment.app.DialogFragment;
 import androidx.annotation.NonNull;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.appcompat.app.AppCompatActivity;
@@ -119,20 +123,20 @@ public class MainActivity extends AppCompatActivity {
 		tif = new IntentFilter(TIME_INTENT_FILTER);
 		setContentView(R.layout.activity_main);
 		
-		Toolbar myToolbar = (Toolbar) findViewById(R.id.ma_toolbar);
+		Toolbar myToolbar = findViewById(R.id.ma_toolbar);
 		setSupportActionBar(myToolbar);
 		
-		mProgress = (ProgressBar) findViewById(R.id.progress_bar);
-		mEncProgress = (ProgressBar) findViewById(R.id.enc_progress_bar);
-		fileTxtEdit = (EditText) findViewById(R.id.filePath_EditText);
-		dirTxtEdit = (EditText) findViewById(R.id.dirPath_EditText);
-		stButton = (Button) findViewById(R.id.startAndStop_Btn);
-		rngButton = (Button) findViewById(R.id.range_Btn);
-		filesButton = (Button) findViewById(R.id.files_Btn);
-		progressLLView = (LinearLayout) findViewById(R.id.progress_ll);
-		rangeTxtView = (TextView) findViewById(R.id.range_TextView);
-		pathTxtView = (TextView) findViewById(R.id.filePath_TextView);
-		timeTxtView = (TextView) findViewById(R.id.time_TextView);
+		mProgress = findViewById(R.id.progress_bar);
+		mEncProgress = findViewById(R.id.enc_progress_bar);
+		fileTxtEdit = findViewById(R.id.filePath_EditText);
+		dirTxtEdit = findViewById(R.id.dirPath_EditText);
+		stButton = findViewById(R.id.startAndStop_Btn);
+		rngButton = findViewById(R.id.range_Btn);
+		filesButton = findViewById(R.id.files_Btn);
+		progressLLView = findViewById(R.id.progress_ll);
+		rangeTxtView = findViewById(R.id.range_TextView);
+		pathTxtView = findViewById(R.id.filePath_TextView);
+		timeTxtView = findViewById(R.id.time_TextView);
 		
 		if (savedInstanceState != null) {
 	        start = savedInstanceState.getInt(STATE_START);
@@ -566,8 +570,31 @@ public class MainActivity extends AppCompatActivity {
 	}
 	
 	public void onclickRange() {
-		DialogFragment dlg = new MDialog();
-		dlg.show(getFragmentManager(), "dlg");
+		LinearLayout llview;
+		final EditText et1;
+		final EditText et2;
+		llview = (LinearLayout) getLayoutInflater().inflate(R.layout.dialog, null);
+		et1 = llview.findViewById(R.id.eText1);
+		et2 = llview.findViewById(R.id.eText2);
+		DialogInterface.OnClickListener ocl = new DialogInterface.OnClickListener() {
+			@Override
+			public void onClick(DialogInterface dialogInterface, int i) {
+				switch (i) {
+					case Dialog.BUTTON_POSITIVE:
+						onDialogReturnedValues(et1.getText().toString()
+								, et2.getText().toString());
+						break;
+					case Dialog.BUTTON_NEGATIVE:
+						break;
+				}
+			}
+		};
+		AlertDialog.Builder builder = new AlertDialog.Builder(this)
+				.setTitle(R.string.dtitle)
+				.setPositiveButton(R.string.ok, ocl)
+				.setNegativeButton(R.string.cancel, ocl)
+				.setView(llview);
+		builder.show();
 	}
 	
 	public void onDialogReturnedValues(String start_value, String end_value) {

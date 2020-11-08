@@ -6,8 +6,8 @@ android {
         applicationId "org.txt.to.audiofile"
         minSdkVersion 19
         targetSdkVersion 29
-        versionCode 13
-        versionName "1.2.8"
+        versionCode 14
+        versionName "1.2.9"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         externalNativeBuild {
             cmake {
@@ -42,6 +42,7 @@ dependencies {
     implementation 'commons-io:commons-io:2.6'
     implementation 'org.jsoup:jsoup:1.13.1'
     implementation 'com.googlecode.juniversalchardet:juniversalchardet:1.0.3'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:4.13.1'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'

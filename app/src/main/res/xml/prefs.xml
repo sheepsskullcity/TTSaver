@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen
+<androidx.preference.PreferenceScreen
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:seekbarpref="http://schemas.android.com/apk/res-auto">
 	<Preference android:title="@string/prefs_TTSSettings" >
 		<intent android:action="com.android.settings.TTS_SETTINGS"
 			android:launchMode="singleInstance" />
 	</Preference>
-	<org.txt.to.audiofile.SeekBarPreference
+	<org.txt.to.audiofile.SeekBarPreferenceBase
 	    android:key="seekBarPreference"
 	    android:title="@string/seekBar_dialog_title"
 	    android:dialogTitle="@string/seekBar_dialog_title"
@@ -68,7 +68,7 @@
         android:summary="@string/pref_audioParts_summary"
         android:title="@string/pref_audioParts"
         android:dialogTitle="@string/pref_audioParts_dtitle"
-        android:numeric="integer"
+		android:inputType="number"
         android:defaultValue="10" />
     <EditTextPreference
         android:key="pref_outputTemplate"
@@ -94,4 +94,4 @@
         android:entries="@array/pref_theme_entries"
         android:entryValues="@array/pref_theme_values"
         android:defaultValue="1" />
-</PreferenceScreen>
+</androidx.preference.PreferenceScreen>

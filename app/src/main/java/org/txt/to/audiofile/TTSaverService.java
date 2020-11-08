@@ -37,7 +37,7 @@ import android.os.PowerManager.WakeLock;
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.TextToSpeech.OnInitListener;
 import android.speech.tts.UtteranceProgressListener;
-import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationCompat.Builder;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import android.util.Log;
 import android.widget.Toast;
@@ -55,6 +55,8 @@ public class TTSaverService extends Service implements OnInitListener {
 	private final int RECORD_FINISHED = -1;
 	private final String UTTERANCE_ID = "org.txt.to.audiofile.UtteranceID";
 	private final int ONGOING_NOTIFICATION_ID = 1;
+	private final String CH_ID_LOW = "org.txt.to.audiofile.low";
+	private final String CH_ID_HIGH = "org.txt.to.audiofile.high";
 	
 	private TextToSpeech tts;
 	private final HashMap<String, String> myHashRender = new HashMap<>();
@@ -79,7 +81,6 @@ public class TTSaverService extends Service implements OnInitListener {
 	private String nameTemplate;
 	private int bufferParts;
 	private String errorMsg;
-	private Notification notification;
 	private long startT;
 	private long endT;
 	private long totalT;
@@ -123,27 +124,9 @@ public class TTSaverService extends Service implements OnInitListener {
 	  tintent = new Intent(MainActivity.TIME_INTENT_FILTER);
 	  mintent = new Intent(MainActivity.CUSTOM_INTENT_FILTER);
 	  myHashRender.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, UTTERANCE_ID);
-	  
-	  Intent notificationIntent = new Intent(this, MainActivity.class);
-	  notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-	  .setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-	  PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-	  
-	  Bitmap bm = BitmapFactory.decodeResource(getResources(), R.drawable.ic_gray);
 
 	  createNotificationChannel();
 
-	  NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this, "org.txt.to.audiofile")
-	    .setSmallIcon(R.drawable.ic_white)
-	    .setLargeIcon(bm)
-	    .setContentInfo(getText(R.string.ticker_text))
-	    .setContentTitle(getText(R.string.notification_title))
-	    .setContentText(getText(R.string.notification_message))
-	    .setContentIntent(pendingIntent);
-	  
-	  if (Build.VERSION.SDK_INT >= 21)
-		  mBuilder.setCategory(Notification.CATEGORY_SERVICE);
-	  notification = mBuilder.build();
 	  PowerManager powerManager = (PowerManager) getSystemService(POWER_SERVICE);
 	  assert powerManager != null;
 	  wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK,
@@ -157,13 +140,16 @@ public class TTSaverService extends Service implements OnInitListener {
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 			CharSequence name = getString(R.string.foreground_service);
 			String description = getString(R.string.foreground_service_desc);
-			int importance = NotificationManager.IMPORTANCE_DEFAULT;
-			NotificationChannel channel = new NotificationChannel("org.txt.to.audiofile", name, importance);
-			channel.setDescription(description);
+			int importance_low = NotificationManager.IMPORTANCE_LOW;
+			int importance_high = NotificationManager.IMPORTANCE_HIGH;
+			NotificationChannel channel_low = new NotificationChannel(CH_ID_LOW, name, importance_low);
+			NotificationChannel channel_high = new NotificationChannel(CH_ID_HIGH, name, importance_high);
+			channel_low.setDescription(description);
 			// Register the channel with the system; you can't change the importance
 			// or other notification behaviors after this
 			NotificationManager notificationManager = getSystemService(NotificationManager.class);
-			notificationManager.createNotificationChannel(channel);
+			notificationManager.createNotificationChannel(channel_low);
+			notificationManager.createNotificationChannel(channel_high);
 		}
 	}
 
@@ -289,6 +275,31 @@ public class TTSaverService extends Service implements OnInitListener {
   }
   
   public void runTask(Intent intent) {
+	  SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+	  boolean bool_notif = prefs.getBoolean("pref_notifsound", false);
+	  Notification notification;
+
+	  Intent notificationIntent = new Intent(this, MainActivity.class);
+	  notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+			  .setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+
+	  PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+	  Bitmap bm = BitmapFactory.decodeResource(getResources(), R.drawable.ic_gray);
+
+	  Builder mBuilder = new Builder(this, bool_notif ? CH_ID_HIGH : CH_ID_LOW)
+			  .setSmallIcon(R.drawable.ic_white)
+			  .setLargeIcon(bm)
+			  .setContentInfo(getText(R.string.ticker_text))
+			  .setContentTitle(getText(R.string.notification_title))
+			  .setContentText(getText(R.string.notification_message))
+			  .setContentIntent(pendingIntent);
+
+	  if (Build.VERSION.SDK_INT >= 21)
+		  mBuilder.setCategory(Notification.CATEGORY_SERVICE);
+
+	  notification = mBuilder.build();
+
 	  startForeground(ONGOING_NOTIFICATION_ID, notification);
 	  wakeLock.acquire();
 	  String fileName = "";
@@ -559,7 +570,7 @@ public class TTSaverService extends Service implements OnInitListener {
 			  ArrayList<String[]> list = new ArrayList<>();
 			  BufferedReader bufferedReader;
 			  try {
-				  bufferedReader = new BufferedReader(new FileReader(new File(getFilesDir() + File.separator + RegexPreference.REGEX_LIST_FILE)));
+				  bufferedReader = new BufferedReader(new FileReader(new File(getFilesDir() + File.separator + RegexPreferenceDialogFragmentCompat.REGEX_LIST_FILE)));
 				  String read;
 				  Pattern pattern = Pattern.compile("^(.+)#->#(.*)$");
 				  while((read = bufferedReader.readLine()) != null) {
@@ -678,6 +689,9 @@ public class TTSaverService extends Service implements OnInitListener {
   }
 
   private void showErrNotif(String msg) {
+	  SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+	  boolean bool_notif = prefs.getBoolean("pref_notifsound", false);
+
 	  Intent notificationIntent = new Intent(this, MainActivity.class);
 	  notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
 	  	.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
@@ -688,7 +702,7 @@ public class TTSaverService extends Service implements OnInitListener {
 	  
 	  Bitmap bm = BitmapFactory.decodeResource(getResources(), R.drawable.ic_red);
 	  
-	  NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this, "org.txt.to.audiofile")
+	  Builder mBuilder = new Builder(this, bool_notif ? CH_ID_HIGH : CH_ID_LOW)
 	    .setSmallIcon(R.drawable.ic_white)
 	    .setLargeIcon(bm)
 	    .setContentTitle(getText(R.string.error_notification_title))
@@ -698,8 +712,7 @@ public class TTSaverService extends Service implements OnInitListener {
 	  
 	  if (Build.VERSION.SDK_INT >= 21)
 		  mBuilder.setCategory(Notification.CATEGORY_ERROR);
-	  SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-	  if (prefs.getBoolean("pref_notifsound", false))
+	  if (bool_notif)
 		  mBuilder.setSound(soundUri);
 	  
 	  mBuilder.setAutoCancel(true);
@@ -709,6 +722,9 @@ public class TTSaverService extends Service implements OnInitListener {
   }
 
   private void finalNotif() {
+	  SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+	  boolean bool_notif = prefs.getBoolean("pref_notifsound", false);
+
 	  Intent notificationIntent = new Intent(this, MainActivity.class);
 	  notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
 	  	.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
@@ -718,7 +734,7 @@ public class TTSaverService extends Service implements OnInitListener {
 	  
 	  Bitmap bm = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher);
 	  
-	  NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this, "org.txt.to.audiofile")
+	  Builder mBuilder = new Builder(this, bool_notif ? CH_ID_HIGH : CH_ID_LOW)
 	    .setSmallIcon(R.drawable.ic_white)
 	    .setLargeIcon(bm)
 	    .setContentTitle(getText(R.string.final_notification_title))
@@ -728,8 +744,7 @@ public class TTSaverService extends Service implements OnInitListener {
 	  
 	  if (Build.VERSION.SDK_INT >= 21)
 		  mBuilder.setCategory(Notification.CATEGORY_STATUS);
-	  SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-	  if (prefs.getBoolean("pref_notifsound", false))
+	  if (bool_notif)
 		  mBuilder.setSound(soundUri);
 	  
 	  mBuilder.setAutoCancel(true);

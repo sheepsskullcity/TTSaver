@@ -94,14 +94,14 @@ public class FilesActivity extends AppCompatActivity {
 		}
 		setContentView(R.layout.activity_files);
 		
-		myToolbar = (Toolbar) findViewById(R.id.fa_toolbar);
+		myToolbar = findViewById(R.id.fa_toolbar);
 		setSupportActionBar(myToolbar);
 		
-		lvSimple = (ListView) findViewById(R.id.files_ListView);
-		txtEmpty = (TextView) findViewById(R.id.filesEmpty_TextView);
-		txtFile = (TextView) findViewById(R.id.filesFile_TextView);
-		txtDir = (TextView) findViewById(R.id.filesDir_TextView);
-		txtStatus =  (TextView) findViewById(R.id.filesStatus_TextView);
+		lvSimple = findViewById(R.id.files_ListView);
+		txtEmpty = findViewById(R.id.filesEmpty_TextView);
+		txtFile = findViewById(R.id.filesFile_TextView);
+		txtDir = findViewById(R.id.filesDir_TextView);
+		txtStatus = findViewById(R.id.filesStatus_TextView);
 		
 		if (!finalFilePath.isEmpty()) {
 			String append = getResources().getString(R.string.files_filepath_append);
@@ -465,7 +465,7 @@ public class FilesActivity extends AppCompatActivity {
 			@Override
 			public int compare(File o1, File o2) {
 				if ( (o1.isFile() && o2.isFile()) || (o1.isDirectory() && o2.isDirectory()) )
-					return ((Integer) o1.getName().compareTo(o2.getName()));
+					return o1.getName().compareTo(o2.getName());
 				else {
 					if (o2.isDirectory())
 						return 1;

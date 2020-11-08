@@ -8,11 +8,13 @@ import android.preference.PreferenceManager;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.preference.PreferenceFragmentCompat;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 
 public class SettingsActivity extends AppCompatActivity {
-	
+
 	private final int DARK = 1;
 	private SharedPreferences prefs;
 
@@ -26,7 +28,7 @@ public class SettingsActivity extends AppCompatActivity {
 		else
 			setTheme(R.style.AppBaseLightTheme);
 		super.onCreate(savedInstanceState);
-		getSupportFragmentManager().beginTransaction().replace(android.R.id.content, new mFragment()).commit();
+		getSupportFragmentManager().beginTransaction().replace(android.R.id.content, new PrefsFragment()).commit();
     }
 	
 	@Override
@@ -51,10 +53,40 @@ public class SettingsActivity extends AppCompatActivity {
 		}
 	};
 
-	public static class mFragment extends PreferenceFragmentCompat {
+	public static class PrefsFragment extends PreferenceFragmentCompat {
+		PrefsFragment() {
+		}
+
 		@Override
+
 		public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
 			setPreferencesFromResource(R.xml.prefs, rootKey);
+		}
+		@Override
+		public void onDisplayPreferenceDialog(Preference preference) {
+			if (preference instanceof RegexPreference) {
+				DialogFragment f;
+				f = RegexPreferenceDialogFragmentCompat.newInstance(preference.getKey());
+				f.setTargetFragment(this, 0);
+				f.show(getParentFragmentManager(), null);
+			} else if (preference instanceof SeekBarPreferenceBase) {
+				DialogFragment f;
+				f = SeekBarPreferenceBaseDialogFragmentCompat.newInstance(preference.getKey());
+				f.setTargetFragment(this, 0);
+				f.show(getParentFragmentManager(), null);
+			} else if (preference instanceof SeekBarPreferencePause) {
+				DialogFragment f;
+				f = SeekBarPreferencePauseDialogFragmentCompat.newInstance(preference.getKey());
+				f.setTargetFragment(this, 0);
+				f.show(getParentFragmentManager(), null);
+			} else if (preference instanceof SeekBarPreferencePitch) {
+				DialogFragment f;
+				f = SeekBarPreferencePitchDialogFragmentCompat.newInstance(preference.getKey());
+				f.setTargetFragment(this, 0);
+				f.show(getParentFragmentManager(), null);
+			} else {
+				super.onDisplayPreferenceDialog(preference);
+			}
 		}
 	}
 }

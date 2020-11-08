@@ -4,10 +4,12 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 
+
 import androidx.preference.DialogPreference;
 
-public class SeekBarPreferencePitch extends DialogPreference {
 
+public class SeekBarPreferenceBase extends DialogPreference {
+	
     // Namespaces to read attributes
     protected static final String PREFERENCE_NS = "http://schemas.android.com/apk/res-auto";
     protected static final String ANDROID_NS = "http://schemas.android.com/apk/res/android";
@@ -18,25 +20,25 @@ public class SeekBarPreferencePitch extends DialogPreference {
     protected static final String ATTR_MAX_VALUE = "maxValue";
 
     // Default values for defaults
-    protected static final int DEFAULT_CURRENT_VALUE = 10;
-    protected static final int DEFAULT_MIN_VALUE = 1;
-    protected static final int DEFAULT_MAX_VALUE = 19;
+    protected static final int DEFAULT_CURRENT_VALUE = 100;
+    protected static final int DEFAULT_MIN_VALUE = 25;
+    protected static final int DEFAULT_MAX_VALUE = 400;
 
     // Real defaults
     protected int mDefaultValue;
     protected int mMaxValue;
     protected int mMinValue;
-
+    
     // Current value
     protected int mCurrentValue;
 
-    public SeekBarPreferencePitch(Context context, AttributeSet attrs) {
+    public SeekBarPreferenceBase(Context context, AttributeSet attrs) {
     	super(context, attrs);
 
-        // Read parameters from attributes
-        mMinValue = attrs.getAttributeIntValue(PREFERENCE_NS, ATTR_MIN_VALUE, DEFAULT_MIN_VALUE);
-        mMaxValue = attrs.getAttributeIntValue(PREFERENCE_NS, ATTR_MAX_VALUE, DEFAULT_MAX_VALUE);
-        mDefaultValue = attrs.getAttributeIntValue(ANDROID_NS, ATTR_DEFAULT_VALUE, DEFAULT_CURRENT_VALUE);
+    	// Read parameters from attributes
+    	mMinValue = attrs.getAttributeIntValue(PREFERENCE_NS, ATTR_MIN_VALUE, DEFAULT_MIN_VALUE);
+    	mMaxValue = attrs.getAttributeIntValue(PREFERENCE_NS, ATTR_MAX_VALUE, DEFAULT_MAX_VALUE);
+    	mDefaultValue = attrs.getAttributeIntValue(ANDROID_NS, ATTR_DEFAULT_VALUE, DEFAULT_CURRENT_VALUE);
     }
 
     public int getVal() {
@@ -79,8 +81,8 @@ public class SeekBarPreferencePitch extends DialogPreference {
     }
 
     public String getSummaryStrValue() {
-    	int value = getPersistedInt(mDefaultValue);
-    	return " " + Integer.toString(value - 10);
+        int value = getPersistedInt(mDefaultValue);
+        return " " + value + "%";
     }
 
 }

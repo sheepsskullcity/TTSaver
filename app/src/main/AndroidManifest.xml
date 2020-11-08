@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
         android:allowBackup="true"
@@ -22,7 +23,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="org.txt.to.audiofile.SettingsActivity" >
+            android:name="org.txt.to.audiofile.SettingsActivity"
+            android:configChanges="orientation|screenSize" >
         </activity>
         <activity
             android:name="org.txt.to.audiofile.FilesActivity" >
