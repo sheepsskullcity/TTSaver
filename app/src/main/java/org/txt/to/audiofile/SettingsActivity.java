@@ -54,11 +54,8 @@ public class SettingsActivity extends AppCompatActivity {
 	};
 
 	public static class PrefsFragment extends PreferenceFragmentCompat {
-		PrefsFragment() {
-		}
 
 		@Override
-
 		public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
 			setPreferencesFromResource(R.xml.prefs, rootKey);
 		}

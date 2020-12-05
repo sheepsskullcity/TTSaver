@@ -11,10 +11,12 @@ import java.util.Map;
 import java.util.Objects;
 
 import android.app.AlertDialog;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.preference.PreferenceManager;
@@ -23,11 +25,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.view.ActionMode;
 import androidx.appcompat.view.ActionMode.Callback;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.FileProvider;
+
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.MimeTypeMap;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
@@ -87,6 +92,9 @@ public class FilesActivity extends AppCompatActivity {
 		else
 			setTheme(R.style.FilesLightTheme);
 		super.onCreate(savedInstanceState);
+		Intent intent = getIntent();
+		if (intent.hasExtra(MainActivity.OUTPUT_PATH))
+			currentDir = Objects.requireNonNull(intent.getExtras()).getString(MainActivity.OUTPUT_PATH);
 		if (savedInstanceState != null) {
 			currentDir = savedInstanceState.getString(STATE_CURRENT_DIR);
 			finalFilePath = savedInstanceState.getString(STATE_FILE);
@@ -311,6 +319,16 @@ public class FilesActivity extends AppCompatActivity {
 					} else {
 						lvSimple.setItemChecked(checkedPosition, true);
 					}
+				} else if (!pathItem.isDirectory()) {
+					File file = list.get(position);
+					Uri uri = FileProvider.getUriForFile(getApplicationContext(), getApplicationContext().getPackageName() + ".provider", file);
+					String type = getMimeType(uri);
+					if (type != null) {
+						Intent intent = new Intent(Intent.ACTION_VIEW);
+						intent.setDataAndType(uri, type);
+						intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+						startActivity(Intent.createChooser(intent, "Open with"));
+					}
 				}
 			}});
 		lvSimple.setOnItemLongClickListener(new OnItemLongClickListener() {
@@ -326,6 +344,20 @@ public class FilesActivity extends AppCompatActivity {
 				return true;
 			}
 		});
+	}
+
+	public String getMimeType(Uri uri) {
+		String mimeType = null;
+		if (ContentResolver.SCHEME_CONTENT.equals(uri.getScheme())) {
+			ContentResolver cr = this.getContentResolver();
+			mimeType = cr.getType(uri);
+		} else {
+			String fileExtension = MimeTypeMap.getFileExtensionFromUrl(uri
+					.toString());
+			mimeType = MimeTypeMap.getSingleton().getMimeTypeFromExtension(
+					fileExtension.toLowerCase());
+		}
+		return mimeType;
 	}
 	
 	public Callback callback = new Callback() {

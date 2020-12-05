@@ -15,6 +15,7 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -230,6 +231,16 @@ public class MainActivity extends AppCompatActivity {
 					onclickFiles();
 				}
 			}});
+		filesButton.setOnLongClickListener(new OnLongClickListener() {
+			@Override
+			public boolean onLongClick(View v) {
+				boolean permission = isPermissionGranted(REQUEST_PERMISSION_CODE_FILES);
+				if (permission) {
+					onLongClickFiles();
+				}
+				return true;
+			}
+		});
 	}
 	
 	private final BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
@@ -474,9 +485,8 @@ public class MainActivity extends AppCompatActivity {
 			if (!file.canRead())
 				return FILE_NOT_READABLE;
 		}
-		if (mode == MODE_TEXT && text.isEmpty()) {
+		if (mode == MODE_TEXT && text.isEmpty())
 			return EMPTY_TEXT;
-		}
 		if (!dir.exists() || !dir.isDirectory())
 			return DIR_NOT_EXIST;
 		if (!dir.canWrite())
@@ -487,6 +497,17 @@ public class MainActivity extends AppCompatActivity {
 	public void onclickFiles() {
 		Intent filesIntent = new Intent(this, FilesActivity.class);
 		startActivityForResult(filesIntent, REQUEST_CODE_FILES);
+	}
+
+	public void onLongClickFiles() {
+		String outputPath = dirTxtEdit.getText().toString();;
+		outputPath = outputPath.replaceAll("([^/])$", "$1/");
+		File dir = new File(outputPath);
+		if (dir.exists() && dir.isDirectory()) {
+			Intent filesIntent = new Intent(this, FilesActivity.class);
+			filesIntent.putExtra(OUTPUT_PATH, outputPath);
+			startActivityForResult(filesIntent, REQUEST_CODE_FILES);
+		}
 	}
 
 	public  boolean isPermissionGranted(int code) {

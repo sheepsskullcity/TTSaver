@@ -393,8 +393,10 @@ public class TTSaverService extends Service implements OnInitListener {
 	  //Log.d(LOG_TAG, "onDestroy");
 	  stopForeground(true);
 	  handler.removeCallbacks(timerRunnable);
-	  if (tts.isSpeaking())
-		  tts.stop();
+	  if (tts != null) {
+	  	if (tts.isSpeaking())
+	  		tts.stop();
+	  }
 	  
 	  if (tts != null)
 		  tts.shutdown();
